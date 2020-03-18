@@ -1,6 +1,7 @@
 'use strict';
 const fetch = require('node-fetch');
 const yauzl = require('yauzl-promise');
+const { sleep } = require('./sleep');
 
 async function requestResultsToBeBuilt(token, dataCenter, surveyId) {
   const payload = {
@@ -22,6 +23,7 @@ async function requestResultsToBeBuilt(token, dataCenter, surveyId) {
 }
 
 async function waitForBuildToComplete(token, dataCenter, progressId) {
+  await sleep(1000); //wait for a second before making the request
   const url = `https://${dataCenter}.qualtrics.com/API/v3/responseexports/${progressId}`;
   const response = await fetch(url, {
     headers: {
@@ -33,7 +35,6 @@ async function waitForBuildToComplete(token, dataCenter, progressId) {
   if (data.result.percentComplete === 100) {
     return data.result.file;
   }
-
   return waitForBuildToComplete(token, dataCenter, progressId);
 }
 
