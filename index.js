@@ -7,9 +7,7 @@ const { getSurveyResults } = require('./src/get-survey-results');
 
 const surveyId = process.argv[2];
 const dir = path.join(__dirname, 'output');
-if (!fs.existsSync(dir)){
-  fs.mkdirSync(dir);
-}
+fs.mkdirSync(dir, { recursive: true });
 
 const filePath = path.join(dir, `${surveyId}.csv`);
 const destinationStream = fs.createWriteStream(filePath);
