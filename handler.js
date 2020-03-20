@@ -16,15 +16,16 @@ module.exports.storeSurvey = async event => {
     destinationStream
   );
 
-  return destinationStream.on('finish', async () => {
+  return new Promise(resolve => {
     console.log(`survey data extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}.csv`);
     const params = {
       Bucket: process.env.BUCKET,
       Key: `${surveyId}.csv`,
       Body: fs.createReadStream(fileName)
     };
-    await s3.upload(params).promise();
-    console.log('done!');
-    return { message: `Stored ${surveyId}`, event };
+    s3.upload(params).promise().then(() => {
+      console.log('done!');
+      resolve({ message: `Stored ${surveyId}`, event });
+    });
   });
 };
