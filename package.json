@@ -4,7 +4,9 @@
   "description": "Connect to the qualtrics API and get survey responses",
   "main": "index.js",
   "scripts": {
-    "test": "eslint ."
+    "test": "eslint .",
+    "deploy:production": "serverless deploy --stage=prod --verbose",
+    "deploy:dev": "serverless deploy --stage=dev  --verbose"
   },
   "author": "Jon Johnson <jon.johnson@ucsf.edu>",
   "license": "MIT",
@@ -16,6 +18,7 @@
   "devDependencies": {
     "@ilios/eslint-config": "^2.2.0",
     "dotenv": "^8.2.0",
-    "eslint": "^6.8.0"
+    "eslint": "^6.8.0",
+    "serverless": "^1.67.0"
   }
 }
