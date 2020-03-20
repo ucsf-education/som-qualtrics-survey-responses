@@ -10,7 +10,7 @@ provider:
     - Effect: "Allow"
       Action:
         - secretsmanager:GetSecretValue
-      Resource: "arn:aws:secretsmanager:us-west-1:224909451030:secret:som/qualtrics/api_key-hwxXLY"
+      Resource: "arn:aws:secretsmanager:us-west-2:324125712306:secret:som/qualtrics/api_key-iVmbWI"
 
     - Effect: "Allow"
       Action:
