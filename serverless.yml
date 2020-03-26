@@ -35,133 +35,133 @@ functions:
   storeSurvey1:
     handler: handler.storeSurvey
     events:
-      - schedule: rate(4 hours)
+      - schedule: rate(15 minutes)
     environment:
       SURVEY_ID: SV_exInb81a5EtSLDT
   storeSurvey2:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_9yOpJ5At8FaM39H
   storeSurvey3:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_bpXobewZ0831pfT
   storeSurvey4:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_8CB06g8tnLSSt9P
   storeSurvey5:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_bK7vU2Zk1WzBOBf
   storeSurvey6:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_d6UsHGihbYWM4sd
   storeSurvey7:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_3mlSFVpWmhXC245
   storeSurvey8:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_3wqXbUWZxfFQ7bL
   storeSurvey9:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_8Bt9BEvMDp8ADWt
   storeSurvey10:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_40fxH6k2D56Jmyp
   storeSurvey11:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_0jOtXZ54ynJGOMZ
   storeSurvey12:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_0SQhsikeG2St445
   storeSurvey13:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_4UVvdY2oDgOm6Db
   storeSurvey14:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_7WzPjUZlr4YSrPL
   storeSurvey15:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_0GrS0vnQVLrbAz3
   storeSurvey16:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_aY4PCQzC5slzfHD
   storeSurvey17:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_bO6jl8AOueiS0PX
   storeSurvey18:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_2498foz7l1fSGlD
   storeSurvey19:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_0Ncvxstu2pxlCPb
   storeSurvey20:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_9ZDwhVZDlflCXVb
   storeSurvey21:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_3OuwCxLQDMIPXgh
   storeSurvey22:
       handler: handler.storeSurvey
       events:
-        - schedule: rate(4 hours)
+        - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_0pvpV6isPLivSvz
 
