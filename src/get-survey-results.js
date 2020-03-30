@@ -50,12 +50,17 @@ async function writeFile(token, url, destinationStream) {
   const entry = await zipFile.readEntry();
   const readStream = await zipFile.openReadStream(entry);
   readStream.pipe(destinationStream);
+  return new Promise(resolve => {
+    destinationStream.on("end", () => {
+      resolve();
+    });
+  });
 }
 
 async function getSurveyResults(token, dataCenter, surveyId, destinationStream) {
   const progressId = await requestResultsToBeBuilt(token, dataCenter, surveyId);
   const fileUrl = await waitForBuildToComplete(token, dataCenter, progressId);
-  return writeFile(token, fileUrl, destinationStream);
+  return await writeFile(token, fileUrl, destinationStream);
 }
 
 exports.getSurveyResults = getSurveyResults;

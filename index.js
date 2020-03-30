@@ -17,5 +17,5 @@ getSurveyResults(
   surveyId,
   destinationStream
 ).then(() => {
-  console.log("done\n\n");
+  console.log("done\n");
 });
