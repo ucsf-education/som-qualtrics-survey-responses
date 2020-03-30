@@ -51,7 +51,7 @@ async function writeFile(token, url, destinationStream) {
   const readStream = await zipFile.openReadStream(entry);
   readStream.pipe(destinationStream);
   return new Promise(resolve => {
-    destinationStream.on("end", () => {
+    destinationStream.on("finish", () => {
       resolve();
     });
   });
