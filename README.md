@@ -1,12 +1,12 @@
-#UCSF SOM Qualtrics Survey Responses Downloader
+# UCSF SOM Qualtrics Survey Responses Downloader
 
-##About
+## About
 The UCSF SOM Qualtrics Survey Responses Downloader provides the UCSF School of Medicine with the most up-to-date Qualtrics Survey responses by downloading updated versions of the CSV-formatted files every 15 minutes to an S3 content "bucket" at AWS and making them available for immediate download to authorized UCSF SOM personnel with the proper credentials.
 
-##Downloading the files
+## Downloading the files
 The procedure for downloading the updated survey is for authorized UCSF School of Medicine personnel only, and is documented in the Office of Medical Education's space on the UC's Wiki at https://wiki.library.ucsf.edu/display/OME/UCSF+SOM+Qualtrics+Survey+CSV+File+Downloads.  Please refer to that for the process of downloading the survey response CSV data.
 
-##Updating the file index
+## Updating the file index
 Every so often, a new UCSF SOM survey will be created in Qualtrics, and this downloader will need to be made aware of the change by being updated with the ID or IDs of any new surveys added. Any new survey data will NOT be made available to SOM for review until this step is performed for EACH new survey.
 
 The process for updating the downloader with new survey ID's entails updating the [serverless.yml](https://github.com/ucsf-ckm/som-qualtrics-survey-responses/blob/master/serverless.yml) file in this repository, and the easiest way to update it is to do it right here on GitHub, in the user interface. The process for doing so is as-follows:
@@ -45,7 +45,7 @@ You will need to create/add one of these `storeSurveyXX` entries to this file at
 
 Note the incremented-by-one `storeSurvey23` value and that new `SURVEY_ID:` reflects the new one we were looking to add. You should also try to ensure that the formatting of your code (spacing, indentations, etc), match the style of the survey entries above it.
 
-#Making code changes in GitHub directly
+## Making code changes in GitHub directly
 
 If you are not already intimately familiar with using Git, the best place to make the changes to this code is right here in the GitHub User Interface itself.  To so, you will need to have a GitHub account and be logged-into Github, then:
 
