@@ -4,7 +4,8 @@
 The UCSF SOM Qualtrics Survey Responses Downloader provides the UCSF School of Medicine with the most up-to-date Qualtrics Survey responses by downloading updated versions of the CSV-formatted files every 15 minutes to an S3 content "bucket" at AWS and making them available for immediate download to authorized UCSF SOM personnel with the proper credentials.
 
 ## Downloading the files
-The procedure for downloading the updated surveys is for authorized UCSF School of Medicine personnel only, and is documented in the Office of Medical Education's space on the UC's Wiki at https://wiki.library.ucsf.edu/display/OME/UCSF+SOM+Qualtrics+Survey+CSV+File+Downloads.  Please refer to that for the process of downloading the survey response CSV data.
+
+The procedure for downloading updated surveys is for authorized UCSF School of Medicine personnel only, and is documented in the Office of Medical Education's space on the UC's Wiki at https://wiki.library.ucsf.edu/display/OME/UCSF+SOM+Qualtrics+Survey+CSV+File+Downloads.  Please refer to that for the process of downloading the survey response CSV data.
 
 ## Updating the file index
 Every so often, a new UCSF SOM survey will be created in Qualtrics, and this downloader will need to be made aware of the change by being updated with the ID or IDs of any new surveys added. Any new survey data will NOT be made available to SOM for review until this step is performed for EACH new survey.
