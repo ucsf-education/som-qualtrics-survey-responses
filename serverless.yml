@@ -188,6 +188,18 @@ functions:
         - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_ac0zqC6911Dlhnn
+  storeSurvey27:
+      handler: handler.storeSurvey
+      events:
+        - schedule: rate(15 minutes)
+      environment:
+        SURVEY_ID: SV_1SUph0XU9TO6Kk5
+  storeSurvey28:
+      handler: handler.storeSurvey
+      events:
+        - schedule: rate(15 minutes)
+      environment:
+        SURVEY_ID: SV_do6asCXH95beNUN
 
 # you can add CloudFormation resource templates here
 resources:
