@@ -211,7 +211,7 @@ functions:
       events:
         - schedule: rate(15 minutes)
       environment:
-        SURVEY_ID: SV_1ZIhWLiKI83av6l
+        SURVEY_ID: V_1ZIhWLiKI83av6l
   storeSurvey31:
       handler: handler.storeSurvey
       events:
