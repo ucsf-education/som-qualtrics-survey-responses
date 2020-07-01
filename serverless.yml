@@ -193,7 +193,7 @@ functions:
       events:
         - schedule: rate(15 minutes)
       environment:
-        SURVEY_ID: SV_1SUph0XU9TO6Kk5
+        SURVEY_ID: SV_eetprYZHPYsbvdr
   storeSurvey28:
       handler: handler.storeSurvey
       events:
@@ -218,6 +218,42 @@ functions:
         - schedule: rate(15 minutes)
       environment:
         SURVEY_ID: SV_79UU4XxA3XxtuZv
+  storeSurvey32:
+      handler: handler.storeSurvey
+      events:
+        - schedule: rate(15 minutes)
+      environment:
+        SURVEY_ID: SV_789tk1Z80fVs6VL
+  storeSurvey33:
+      handler: handler.storeSurvey
+      events:
+        - schedule: rate(15 minutes)
+      environment:
+        SURVEY_ID: SV_bmjIgWxCoZBrSWF
+  storeSurvey34:
+      handler: handler.storeSurvey
+      events:
+        - schedule: rate(15 minutes)
+      environment:
+        SURVEY_ID: SV_3a61vB0hhXcouJD
+  storeSurvey35:
+      handler: handler.storeSurvey
+      events:
+        - schedule: rate(15 minutes)
+      environment:
+        SURVEY_ID: SV_8xhF6joSf7OxJ53
+  storeSurvey36:
+      handler: handler.storeSurvey
+      events:
+        - schedule: rate(15 minutes)
+      environment:
+        SURVEY_ID: SV_6R1yfS417x7IaDr
+  storeSurvey37:
+      handler: handler.storeSurvey
+      events:
+        - schedule: rate(15 minutes)
+      environment:
+        SURVEY_ID: SV_01bc1bjaoJpZO8B
         
 
 # you can add CloudFormation resource templates here
