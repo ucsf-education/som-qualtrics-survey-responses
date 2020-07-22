@@ -32,253 +32,54 @@ custom:
   qualtricsApiToken: ${ssm:/aws/reference/secretsmanager/som/qualtrics/api_key~true}
 
 functions:
-  storeSurvey1:
-    handler: handler.storeSurvey
+  storeSurveys:
+    timeout: 30
+    handler: handler.storeSurveys
     events:
       - schedule: rate(15 minutes)
     environment:
-      SURVEY_ID: SV_exInb81a5EtSLDT
-  storeSurvey2:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_9yOpJ5At8FaM39H
-  storeSurvey3:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_bpXobewZ0831pfT
-  storeSurvey4:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_8CB06g8tnLSSt9P
-  storeSurvey5:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_bK7vU2Zk1WzBOBf
-  storeSurvey6:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_d6UsHGihbYWM4sd
-  storeSurvey7:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_3mlSFVpWmhXC245
-  storeSurvey8:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_3wqXbUWZxfFQ7bL
-  storeSurvey9:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_8Bt9BEvMDp8ADWt
-  storeSurvey10:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_40fxH6k2D56Jmyp
-  storeSurvey11:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_0jOtXZ54ynJGOMZ
-  storeSurvey12:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_0SQhsikeG2St445
-  storeSurvey13:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_4UVvdY2oDgOm6Db
-  storeSurvey14:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_7WzPjUZlr4YSrPL
-  storeSurvey15:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_0GrS0vnQVLrbAz3
-  storeSurvey16:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_aY4PCQzC5slzfHD
-  storeSurvey17:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_bO6jl8AOueiS0PX
-  storeSurvey18:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_2498foz7l1fSGlD
-  storeSurvey19:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_0Ncvxstu2pxlCPb
-  storeSurvey20:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_9ZDwhVZDlflCXVb
-  storeSurvey21:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_3OuwCxLQDMIPXgh
-  storeSurvey22:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_0pvpV6isPLivSvz
-  storeSurvey23:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_9mord1xXTlsdQJT
-  storeSurvey24:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_9AXy9LNoKeX8bzf
-  storeSurvey25:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_3yEl2wErmkQFgd7
-  storeSurvey26:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_ac0zqC6911Dlhnn
-  storeSurvey27:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_eetprYZHPYsbvdr
-  storeSurvey28:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_do6asCXH95beNUN
-  storeSurvey29:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_0v6enn1osXBYfjf
-  storeSurvey30:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_1ZIhWLiKI83av6l
-  storeSurvey31:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_79UU4XxA3XxtuZv
-  storeSurvey32:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_789tk1Z80fVs6VL
-  storeSurvey33:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_bmjIgWxCoZBrSWF
-  storeSurvey34:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_3a61vB0hhXcouJD
-  storeSurvey35:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_8xhF6joSf7OxJ53
-  storeSurvey36:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_6R1yfS417x7IaDr
-  storeSurvey37:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_01bc1bjaoJpZO8B
-  storeSurvey38:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_6tm3h70xK8GWPOZ
-  storeSurvey39:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_3RcB75IJDyR03LT
-  storeSurvey40:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_0NFOF7vOrjvpWHr
-  storeSurvey41:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_0onopRpXydzpcB7
-        
+      SURVEY_IDS: > 
+        SV_exInb81a5EtSLDT,
+        SV_9yOpJ5At8FaM39H,
+        SV_bpXobewZ0831pfT,
+        SV_8CB06g8tnLSSt9P,
+        SV_bK7vU2Zk1WzBOBf,
+        SV_d6UsHGihbYWM4sd,
+        SV_3mlSFVpWmhXC245,
+        SV_3wqXbUWZxfFQ7bL,
+        SV_8Bt9BEvMDp8ADWt,
+        SV_40fxH6k2D56Jmyp,
+        SV_0jOtXZ54ynJGOMZ,
+        SV_0SQhsikeG2St445,
+        SV_4UVvdY2oDgOm6Db,
+        SV_7WzPjUZlr4YSrPL,
+        SV_0GrS0vnQVLrbAz3,
+        SV_aY4PCQzC5slzfHD,
+        SV_bO6jl8AOueiS0PX,
+        SV_2498foz7l1fSGlD,
+        SV_0Ncvxstu2pxlCPb,
+        SV_9ZDwhVZDlflCXVb,
+        SV_3OuwCxLQDMIPXgh,
+        SV_0pvpV6isPLivSvz,
+        SV_9mord1xXTlsdQJT,
+        SV_9AXy9LNoKeX8bzf,
+        SV_3yEl2wErmkQFgd7,
+        SV_ac0zqC6911Dlhnn,
+        SV_eetprYZHPYsbvdr,
+        SV_do6asCXH95beNUN,
+        SV_0v6enn1osXBYfjf,
+        SV_1ZIhWLiKI83av6l,
+        SV_79UU4XxA3XxtuZv,
+        SV_789tk1Z80fVs6VL,
+        SV_bmjIgWxCoZBrSWF,
+        SV_3a61vB0hhXcouJD,
+        SV_8xhF6joSf7OxJ53,
+        SV_6R1yfS417x7IaDr,
+        SV_01bc1bjaoJpZO8B,
+        SV_6tm3h70xK8GWPOZ,
+        SV_3RcB75IJDyR03LT,
+        SV_0NFOF7vOrjvpWHr,
+        SV_0onopRpXydzpcB7,
 
 # you can add CloudFormation resource templates here
 resources:

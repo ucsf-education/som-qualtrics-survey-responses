@@ -4,8 +4,18 @@ const { getSurveyResults } = require('./src/get-survey-results');
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 
-module.exports.storeSurvey = async event => {
-  const surveyId = process.env.SURVEY_ID;
+module.exports.storeSurveys = async event => {
+  const ids = process.env.SURVEY_IDS.split(',').filter(id => {
+    //filter out empty "\n" string values
+    return Boolean(id) && typeof id === 'string' && id.length > 5;
+  });
+  console.log('Processing Survey Ids: ', ids);
+  const promises = ids.map(id => storeSurvey(id.trim()));
+  const results = await Promise.all(promises);
+  return { message: results.join(', '), event };
+};
+
+const storeSurvey = async (surveyId) => {
   console.log(`getting data for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}.csv`;
   const destinationStream = fs.createWriteStream(fileName);
@@ -24,5 +34,5 @@ module.exports.storeSurvey = async event => {
   };
   await s3.upload(params).promise();
   console.log('done!');
-  return { message: `Stored ${surveyId}`, event };
+  return `Stored ${surveyId}`;
 };
