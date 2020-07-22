@@ -16,35 +16,38 @@ The process for updating the downloader with new survey ID's entails updating th
 
 2. Visit/view the code page for [serverless.yml](https://github.com/ucsf-ckm/som-qualtrics-survey-responses/blob/master/serverless.yml) by going to https://github.com/ucsf-ckm/som-qualtrics-survey-responses/blob/master/serverless.yml.
 
-3. Look at the code for `serverless.yml`, specifically lines [34-166](https://github.com/ucsf-ckm/som-qualtrics-survey-responses/blob/9b13cd6a5dd25c13f81ec947ab8162e372c0cab2/serverless.yml#L34-L166), under the `functions:` section of the code, and you will see an entry for each `storeSurveyXX` like so:
+3. Look at the code for `serverless.yml`, specifically lines [34-82](https://github.com/ucsf-ckm/som-qualtrics-survey-responses/blob/master/serverless.yml#L34-L82), under the `functions:` section of the code, and you will see an entry for each `storeSurveys` like so:
 
-```php
-  storeSurvey21:
-      handler: handler.storeSurvey
+```yaml
+  functions:
+    storeSurveys:
+      timeout: 30
+      handler: handler.storeSurveys
       events:
         - schedule: rate(15 minutes)
       environment:
-        SURVEY_ID: SV_3OuwCxLQDMIPXgh
-  storeSurvey22:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_0pvpV6isPLivSvz
+        SURVEY_IDS: > 
+          SV_exInb81a5EtSLDT,
+          SV_9yOpJ5At8FaM39H,
+          SV_bpXobewZ0831pfT,
+          SV_8CB06g8tnLSSt9P,
+          SV_bK7vU2Zk1WzBOBf,
+```
+With each survey listed on it's own line with a comma at the end.
+
+You will need to create/add and new survey ID to this file at the end of this section of code.  For example, if you are adding a survey with the SURVEY_ID of `SV_1234567890`, you would add it to the end of the list like so:
+
+```yaml
+  SURVEY_IDS: > 
+    SV_exInb81a5EtSLDT,
+    SV_9yOpJ5At8FaM39H,
+    SV_bpXobewZ0831pfT,
+    SV_8CB06g8tnLSSt9P,
+    SV_bK7vU2Zk1WzBOBf,
+    SV_1234567890,
 ```
 
-You will need to create/add one of these `storeSurveyXX` entries to this file at the end of this section of code.  You will need to know the `SURVEY_ID` value(s) of the survey(s) you want to add, and you will need to increment the number of the `storeSurveyXX` entry, but everything else will be the same.  For example, if you are adding a survey with the SURVEY_ID of `SV_1234567890`, you would increment the last `storeSurveyXX`'s value by `1`, and copy/paste the rest of the code from a previous entry.  Currently, the latest `storeSurveyXX` value in the file is `storeSurvey22`, so you will want to increment that `22` by `+1` and your entry will be fore `storeSurvey23`, like so:
-
-```
-  storeSurvey23:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_1234567890
-```
-
-Note the incremented-by-one `storeSurvey23` value and that the new `SURVEY_ID:` value reflects the new one we were looking to add. You should also try to ensure that the formatting of your code (spacing, indentations, etc), match the style of the survey entries above it - the formatting is VERY IMPORTANT in a `yaml` file.
+Note the new `SURVEY_ID:` value reflects the new one we were looking to add. You should also try to ensure that the formatting of your code (spacing, indentations, etc), match the style of the survey entries above it - the formatting is VERY IMPORTANT in a `yaml` file.
 
 ## Making code changes in GitHub directly
 
@@ -54,27 +57,26 @@ If you are not already intimately familiar with using Git, the best place to mak
 
 2. When you click on the pencil to edit the file, a `code editor` will open up.
 
-3. Find the `functions:` section of the code, containing all the `storeSurveyXX` entries as described above.
+3. Find the `functions:` section of the code, containing all the `SURVEY_IDS` entries as described above.
 
-4. Scroll to the very bottom of this section of code, and find the last/latest `storeSurveyXX` value.  (At the time of the writing of this documentation, this value was `storeSurvey22`.)
+4. Scroll to the very bottom of this section of code, and find the last/latest `SV_XXXXX` value.
 
-5. Copy the code from this entry, and paste it onto the next line, correcting for spacing and indentations, to make your entry look like all of the previous ones.
+5. Add your new `SV_XXXX` value on the next line followed by a comma (maintaining the same indentation) like this:
 
-6. Increment the `storeSurveyXX` value by 1, and replace the existing `SURVEY_ID` value with the new one you're wanting to add. If the last `storeSurveyXX` entry was `storeSurvey22` and your `SURVEY_ID` is `SV_1234567890`, your new entry would follow the previous one, like this:
-
-```php
-  storeSurvey22:
-      handler: handler.storeSurvey
+```yaml
+  functions:
+    storeSurveys:
+      timeout: 30
+      handler: handler.storeSurveys
       events:
         - schedule: rate(15 minutes)
       environment:
-        SURVEY_ID: SV_0pvpV6isPLivSvz
-  storeSurvey23:
-      handler: handler.storeSurvey
-      events:
-        - schedule: rate(15 minutes)
-      environment:
-        SURVEY_ID: SV_1234567890
+        SURVEY_IDS: > 
+          SV_exInb81a5EtSLDT,
+          SV_9yOpJ5At8FaM39H,
+          SV_bpXobewZ0831pfT,
+          SV_8CB06g8tnLSSt9P,
+          SV_XXXXXX,
 ```
 
 7. Once you have made the necessary code changes, move on to the form section of Github, at the bottom of the screen, that reads "Commit Changes".
