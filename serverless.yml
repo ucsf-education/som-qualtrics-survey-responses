@@ -80,6 +80,8 @@ functions:
         SV_3RcB75IJDyR03LT,
         SV_0NFOF7vOrjvpWHr,
         SV_0onopRpXydzpcB7,
+        SV_0VwcaXHEvY4mXRP,
+        SV_9SK60Ufpgk2Q7KR,
 
 # you can add CloudFormation resource templates here
 resources:
