@@ -66,8 +66,6 @@ functions:
         SV_3yEl2wErmkQFgd7,
         SV_ac0zqC6911Dlhnn,
         SV_eetprYZHPYsbvdr,
-        SV_do6asCXH95beNUN,
-        SV_0v6enn1osXBYfjf,
         SV_1ZIhWLiKI83av6l,
         SV_79UU4XxA3XxtuZv,
         SV_789tk1Z80fVs6VL,
@@ -76,12 +74,12 @@ functions:
         SV_8xhF6joSf7OxJ53,
         SV_6R1yfS417x7IaDr,
         SV_01bc1bjaoJpZO8B,
-        SV_6tm3h70xK8GWPOZ,
-        SV_3RcB75IJDyR03LT,
         SV_0NFOF7vOrjvpWHr,
         SV_0onopRpXydzpcB7,
         SV_0VwcaXHEvY4mXRP,
         SV_9SK60Ufpgk2Q7KR,
+        SV_6u2pmFnEefzieep,
+        SV_1ZmBQXHQI7ux9Zj,
 
 # you can add CloudFormation resource templates here
 resources:
