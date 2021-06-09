@@ -97,7 +97,8 @@ functions:
         SV_abFO7KohjhulO7Q,
         SV_6VEqKiZOjcuJ5pI,
         SV_eJONoZyl22RTQ7I,
-        SV_d5SG31YfRtk7wqi
+        SV_d5SG31YfRtk7wqi,
+        SV_1FXmmR3v67xmn4O
 
 # you can add CloudFormation resource templates here
 resources:
