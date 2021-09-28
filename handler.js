@@ -16,23 +16,31 @@ module.exports.storeSurveys = async event => {
 };
 
 const storeSurvey = async (surveyId) => {
+  await Promise.all([
+    storeSurveyType(surveyId, 'json'),
+    storeSurveyType(surveyId, 'csv'),
+  ]);
+  return `Stored ${surveyId}`;
+};
+
+const storeSurveyType = async (surveyId, type) => {
   console.log(`getting data for survey: ${surveyId}`);
-  const fileName = `/tmp/${surveyId}.csv`;
+  const fileName = `/tmp/${surveyId}.${type}`;
   const destinationStream = fs.createWriteStream(fileName);
   await getSurveyResults(
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
     surveyId,
-    destinationStream
+    destinationStream,
+    type
   );
 
-  console.log(`survey data extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}.csv`);
+  console.log(`survey data extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}.${type}`);
   const params = {
     Bucket: process.env.BUCKET,
-    Key: `${surveyId}.csv`,
+    Key: `${surveyId}.${type}`,
     Body: fs.createReadStream(fileName)
   };
   await s3.upload(params).promise();
   console.log('done!');
-  return `Stored ${surveyId}`;
 };

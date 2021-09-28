@@ -9,13 +9,26 @@ const surveyId = process.argv[2];
 const dir = path.join(__dirname, 'output');
 fs.mkdirSync(dir, { recursive: true });
 
-const filePath = path.join(dir, `${surveyId}.csv`);
-const destinationStream = fs.createWriteStream(filePath);
-getSurveyResults(
+const jsonFilePath = path.join(dir, `${surveyId}.json`);
+const jsonDestinationStream = fs.createWriteStream(jsonFilePath);
+const jsonPromise = getSurveyResults(
   process.env.QUALTRICS_API_TOKEN,
   process.env.QUALTRICS_DATA_CENTER,
   surveyId,
-  destinationStream
-).then(() => {
+  jsonDestinationStream,
+  'json'
+);
+
+const csvFilePath = path.join(dir, `${surveyId}.csv`);
+const csvDestinationStream = fs.createWriteStream(csvFilePath);
+const csvPromise = getSurveyResults(
+  process.env.QUALTRICS_API_TOKEN,
+  process.env.QUALTRICS_DATA_CENTER,
+  surveyId,
+  csvDestinationStream,
+  'csv'
+);
+
+Promise.all([jsonPromise, csvPromise]).then(() => {
   console.log("done\n");
 });
