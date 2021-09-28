@@ -3,9 +3,9 @@ const fetch = require('node-fetch');
 const yauzl = require('yauzl-promise');
 const { sleep } = require('./sleep');
 
-async function requestResultsToBeBuilt(token, dataCenter, surveyId) {
+async function requestResultsToBeBuilt(token, dataCenter, surveyId, format) {
   const payload = {
-    format: 'csv',
+    format,
     surveyId
   };
   const url = `https://${dataCenter}.qualtrics.com/API/v3/responseexports`;
@@ -57,8 +57,8 @@ async function writeFile(token, url, destinationStream) {
   });
 }
 
-async function getSurveyResults(token, dataCenter, surveyId, destinationStream) {
-  const progressId = await requestResultsToBeBuilt(token, dataCenter, surveyId);
+async function getSurveyResults(token, dataCenter, surveyId, destinationStream, format) {
+  const progressId = await requestResultsToBeBuilt(token, dataCenter, surveyId, format);
   const fileUrl = await waitForBuildToComplete(token, dataCenter, progressId);
   return await writeFile(token, fileUrl, destinationStream);
 }
