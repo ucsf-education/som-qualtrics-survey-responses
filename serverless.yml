@@ -33,7 +33,7 @@ custom:
 
 functions:
   storeSurveys:
-    timeout: 3600
+    timeout: 300
     handler: handler.storeSurveys
     events:
       - schedule: rate(30 minutes)
