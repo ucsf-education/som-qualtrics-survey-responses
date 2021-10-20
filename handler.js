@@ -1,6 +1,6 @@
 'use strict';
 const fs = require('fs');
-const { getSurveyResults } = require('./src/get-survey-results');
+const { getSurveyResponses } = require('./src/get-survey-responses');
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 
@@ -27,7 +27,7 @@ const storeSurveyType = async (surveyId, type) => {
   console.log(`getting data for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}.${type}`;
   const destinationStream = fs.createWriteStream(fileName);
-  await getSurveyResults(
+  await getSurveyResponses(
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
     surveyId,
