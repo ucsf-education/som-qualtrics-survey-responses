@@ -18,13 +18,18 @@ module.exports.storeSurveys = async event => {
 };
 
 const storeSurvey = async (surveyId) => {
-  await Promise.all([
-    storeSurveyResponses(surveyId),
-    storeSurveyResponseSchema(surveyId),
-    storeSurveyDetails(surveyId),
-    storeCSVSurvey(surveyId),
-  ]);
-  return `Stored ${surveyId}`;
+  try {
+    await Promise.all([
+      storeSurveyResponses(surveyId),
+      storeSurveyResponseSchema(surveyId),
+      storeSurveyDetails(surveyId),
+      storeCSVSurvey(surveyId),
+    ]);
+    return `Stored ${surveyId}`;
+  } catch (e) {
+    console.log(`Error fetching: ${surveyId}`);
+    console.log(e);
+  }
 };
 
 const storeCSVSurvey = async (surveyId) => {
