@@ -33,10 +33,10 @@ custom:
 
 functions:
   storeSurveys:
-    timeout: 30
+    timeout: 3600
     handler: handler.storeSurveys
     events:
-      - schedule: rate(15 minutes)
+      - schedule: rate(30 minutes)
     environment:
       SURVEY_IDS: > 
         SV_exInb81a5EtSLDT,
