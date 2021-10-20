@@ -57,10 +57,10 @@ async function writeFile(token, url, destinationStream) {
   });
 }
 
-async function getSurveyResults(token, dataCenter, surveyId, destinationStream, format) {
+async function getSurveyResponses(token, dataCenter, surveyId, destinationStream, format) {
   const progressId = await requestResultsToBeBuilt(token, dataCenter, surveyId, format);
   const fileUrl = await waitForBuildToComplete(token, dataCenter, progressId);
   return await writeFile(token, fileUrl, destinationStream);
 }
 
-exports.getSurveyResults = getSurveyResults;
+exports.getSurveyResponses = getSurveyResponses;
