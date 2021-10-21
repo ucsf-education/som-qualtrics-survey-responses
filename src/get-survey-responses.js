@@ -2,12 +2,13 @@ import fetch from 'node-fetch';
 import { sleep } from './sleep.js';
 import yauzl from 'yauzl-promise';
 
-async function requestResultsToBeBuilt(token, dataCenter, surveyId, format) {
+async function requestResultsToBeBuilt(token, dataCenter, surveyId, format, logger) {
   const payload = {
     format,
     surveyId
   };
   const url = `https://${dataCenter}.qualtrics.com/API/v3/responseexports`;
+  logger.addEvent(`Fetching from: ${url}`);
   const response = await fetch(url, {
     method: 'POST',
     body: JSON.stringify(payload),
@@ -16,6 +17,7 @@ async function requestResultsToBeBuilt(token, dataCenter, surveyId, format) {
       'content-type': 'application/json'
     }
   });
+  logger.addEvent('fetched');
   const data = await response.json();
 
   return data.result.id;
@@ -37,7 +39,8 @@ async function waitForBuildToComplete(token, dataCenter, progressId) {
   return waitForBuildToComplete(token, dataCenter, progressId);
 }
 
-async function writeFile(token, url, destinationStream) {
+async function writeFile(token, url, destinationStream, logger) {
+  logger.addEvent(`Writing file`);
   const response = await fetch(url, {
     headers: {
       'x-api-token': token,
@@ -56,8 +59,8 @@ async function writeFile(token, url, destinationStream) {
   });
 }
 
-export async function getSurveyResponses(token, dataCenter, surveyId, destinationStream, format) {
-  const progressId = await requestResultsToBeBuilt(token, dataCenter, surveyId, format);
-  const fileUrl = await waitForBuildToComplete(token, dataCenter, progressId);
-  return await writeFile(token, fileUrl, destinationStream);
+export async function getSurveyResponses(token, dataCenter, surveyId, destinationStream, format, logger) {
+  const progressId = await requestResultsToBeBuilt(token, dataCenter, surveyId, format, logger);
+  const fileUrl = await waitForBuildToComplete(token, dataCenter, progressId, logger);
+  return await writeFile(token, fileUrl, destinationStream, logger);
 }
