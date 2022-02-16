@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const yauzl = require('yauzl-promise');
 const { sleep } = require('./sleep');
 
-async function requestResultsToBeBuilt(token, dataCenter, surveyId, format) {
+async function requestResultsToBeBuilt (token, dataCenter, surveyId, format) {
   const payload = {
     format,
     surveyId
@@ -22,8 +22,8 @@ async function requestResultsToBeBuilt(token, dataCenter, surveyId, format) {
   return data.result.id;
 }
 
-async function waitForBuildToComplete(token, dataCenter, progressId) {
-  await sleep(1000); //wait for a second before making the request
+async function waitForBuildToComplete (token, dataCenter, progressId) {
+  await sleep(1000); // wait for a second before making the request
   const url = `https://${dataCenter}.qualtrics.com/API/v3/responseexports/${progressId}`;
   const response = await fetch(url, {
     headers: {
@@ -38,7 +38,7 @@ async function waitForBuildToComplete(token, dataCenter, progressId) {
   return waitForBuildToComplete(token, dataCenter, progressId);
 }
 
-async function writeFile(token, url, destinationStream) {
+async function writeFile (token, url, destinationStream) {
   const response = await fetch(url, {
     headers: {
       'x-api-token': token,
@@ -51,13 +51,13 @@ async function writeFile(token, url, destinationStream) {
   const readStream = await zipFile.openReadStream(entry);
   readStream.pipe(destinationStream);
   return new Promise(resolve => {
-    destinationStream.on("finish", () => {
+    destinationStream.on('finish', () => {
       resolve();
     });
   });
 }
 
-async function getSurveyResponses(token, dataCenter, surveyId, destinationStream, format) {
+async function getSurveyResponses (token, dataCenter, surveyId, destinationStream, format) {
   const progressId = await requestResultsToBeBuilt(token, dataCenter, surveyId, format);
   const fileUrl = await waitForBuildToComplete(token, dataCenter, progressId);
   return await writeFile(token, fileUrl, destinationStream);

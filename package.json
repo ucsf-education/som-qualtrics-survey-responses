@@ -4,7 +4,7 @@
   "description": "Connect to the qualtrics API and get survey responses",
   "main": "index.js",
   "scripts": {
-    "test": "eslint .",
+    "test": "semistandard --fix",
     "deploy:production": "serverless deploy --stage=prod --verbose",
     "deploy:dev": "serverless deploy --stage=dev  --verbose"
   },
@@ -16,9 +16,8 @@
     "yauzl-promise": "^2.1.3"
   },
   "devDependencies": {
-    "@ilios/eslint-config": "^2.2.0",
     "dotenv": "^8.2.0",
-    "eslint": "^7.32.0",
+    "semistandard": "^16.0.1",
     "serverless": "^2.72.2"
   }
 }

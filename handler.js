@@ -8,7 +8,7 @@ const s3 = new AWS.S3();
 
 module.exports.storeSurveys = async event => {
   const ids = process.env.SURVEY_IDS.split(',').filter(id => {
-    //filter out empty "\n" string values
+    // filter out empty "\n" string values
     return Boolean(id) && typeof id === 'string' && id.length > 5;
   });
   console.log('Processing Survey Ids: ', ids);
@@ -23,7 +23,7 @@ const storeSurvey = async (surveyId) => {
       storeSurveyResponses(surveyId),
       storeSurveyResponseSchema(surveyId),
       storeSurveyDetails(surveyId),
-      storeCSVSurvey(surveyId),
+      storeCSVSurvey(surveyId)
     ]);
     return `Stored ${surveyId}`;
   } catch (e) {
@@ -84,7 +84,7 @@ const storeSurveyResponseSchema = async (surveyId) => {
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
     surveyId,
-    destinationStream,
+    destinationStream
   );
 
   console.log(`schema extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}-schema.json`);
@@ -105,7 +105,7 @@ const storeSurveyDetails = async (surveyId) => {
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
     surveyId,
-    destinationStream,
+    destinationStream
   );
 
   console.log(`details extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}-survey.json`);

@@ -37,7 +37,7 @@ const jsonDetailsPromise = getSurveyDetails(
   process.env.QUALTRICS_API_TOKEN,
   process.env.QUALTRICS_DATA_CENTER,
   surveyId,
-  jsonDetailsDestinationStream,
+  jsonDetailsDestinationStream
 );
 
 const jsonSchemaFilePath = path.join(dir, `${surveyId}-schema.json`);
@@ -46,16 +46,16 @@ const jsonSchemaPromise = getSurveyResponseSchema(
   process.env.QUALTRICS_API_TOKEN,
   process.env.QUALTRICS_DATA_CENTER,
   surveyId,
-  jsonSchemaDestinationStream,
+  jsonSchemaDestinationStream
 );
 console.log([jsonResponsePromise, jsonDetailsPromise, jsonSchemaPromise, csvPromise]);
 
 process.stdout.write('working...');
 try {
   Promise.all([jsonResponsePromise, jsonDetailsPromise, jsonSchemaPromise, csvPromise]).then(() => {
-    process.stdout.write("done\n");
+    process.stdout.write('done\n');
   });
 } catch (e) {
-  process.stderr.write("nope");
+  process.stderr.write('nope');
   process.stderr.write(e);
 }
