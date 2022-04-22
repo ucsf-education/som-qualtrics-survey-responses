@@ -10,16 +10,17 @@ jobs:
     steps:
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v1.3.0
+        uses: dependabot/fetch-metadata@v1.3.1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Output Checks
         run: |
-          echo ${{steps.dependabot-metadata.outputs.update-type}}
-          echo ${{steps.dependabot-metadata.outputs.update-type == 'version-update:semver-minor'}}
-          echo ${{steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch'}}
+          echo ${{steps.metadata.outputs.dependency-names}}
+          echo ${{steps.metadata.outputs.update-type}}
+          echo ${{steps.metadata.outputs.update-type == 'version-update:semver-minor'}}
+          echo ${{steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
       - name: Enable auto-merge for Dependabot PRs
-        if: ${{ steps.dependabot-metadata.outputs.update-type == 'version-update:semver-minor' || steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch' }}
+        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
