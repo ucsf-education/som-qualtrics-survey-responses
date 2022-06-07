@@ -1,7 +1,6 @@
-'use strict';
-const fetch = require('node-fetch');
-const yauzl = require('yauzl-promise');
-const { sleep } = require('./sleep');
+import fetch from 'node-fetch';
+import { sleep } from './sleep.js';
+import yauzl from 'yauzl-promise';
 
 async function requestResultsToBeBuilt(token, dataCenter, surveyId, format) {
   const payload = {
@@ -57,10 +56,8 @@ async function writeFile(token, url, destinationStream) {
   });
 }
 
-async function getSurveyResponses(token, dataCenter, surveyId, destinationStream, format) {
+export async function getSurveyResponses(token, dataCenter, surveyId, destinationStream, format) {
   const progressId = await requestResultsToBeBuilt(token, dataCenter, surveyId, format);
   const fileUrl = await waitForBuildToComplete(token, dataCenter, progressId);
   return await writeFile(token, fileUrl, destinationStream);
 }
-
-exports.getSurveyResponses = getSurveyResponses;

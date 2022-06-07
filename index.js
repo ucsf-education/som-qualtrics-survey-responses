@@ -1,18 +1,17 @@
-'use strict';
-require('dotenv').config();
-const fs = require('fs');
-const path = require('path');
-
-const { getSurveyResponses } = require('./src/get-survey-responses');
-const { getSurveyResponseSchema } = require('./src/get-survey-response-schema');
-const { getSurveyDetails } = require('./src/get-survey-details');
+import 'dotenv/config';
+import { createWriteStream, mkdirSync  } from 'node:fs';
+import { getSurveyDetails } from './src/get-survey-details.js';
+import { getSurveyResponseSchema } from './src/get-survey-response-schema.js';
+import { getSurveyResponses } from './src/get-survey-responses.js';
+import { join } from 'node:path';
 
 const surveyId = process.argv[2];
-const dir = path.join(__dirname, 'output');
-fs.mkdirSync(dir, { recursive: true });
+const output = new URL('./output', import.meta.url);
+mkdirSync(output, { recursive: true });
+const dir = output.pathname;
 
-const csvFilePath = path.join(dir, `${surveyId}.csv`);
-const csvDestinationStream = fs.createWriteStream(csvFilePath);
+const csvFilePath = join(dir, `${surveyId}.csv`);
+const csvDestinationStream = createWriteStream(csvFilePath);
 const csvPromise = getSurveyResponses(
   process.env.QUALTRICS_API_TOKEN,
   process.env.QUALTRICS_DATA_CENTER,
@@ -21,8 +20,8 @@ const csvPromise = getSurveyResponses(
   'csv'
 );
 
-const jsonResponseFilePath = path.join(dir, `${surveyId}-responses.json`);
-const jsonResponseDestinationStream = fs.createWriteStream(jsonResponseFilePath);
+const jsonResponseFilePath = join(dir, `${surveyId}-responses.json`);
+const jsonResponseDestinationStream = createWriteStream(jsonResponseFilePath);
 const jsonResponsePromise = getSurveyResponses(
   process.env.QUALTRICS_API_TOKEN,
   process.env.QUALTRICS_DATA_CENTER,
@@ -31,8 +30,8 @@ const jsonResponsePromise = getSurveyResponses(
   'json'
 );
 
-const jsonDetailsFilePath = path.join(dir, `${surveyId}-survey.json`);
-const jsonDetailsDestinationStream = fs.createWriteStream(jsonDetailsFilePath);
+const jsonDetailsFilePath = join(dir, `${surveyId}-survey.json`);
+const jsonDetailsDestinationStream = createWriteStream(jsonDetailsFilePath);
 const jsonDetailsPromise = getSurveyDetails(
   process.env.QUALTRICS_API_TOKEN,
   process.env.QUALTRICS_DATA_CENTER,
@@ -40,8 +39,8 @@ const jsonDetailsPromise = getSurveyDetails(
   jsonDetailsDestinationStream,
 );
 
-const jsonSchemaFilePath = path.join(dir, `${surveyId}-schema.json`);
-const jsonSchemaDestinationStream = fs.createWriteStream(jsonSchemaFilePath);
+const jsonSchemaFilePath = join(dir, `${surveyId}-schema.json`);
+const jsonSchemaDestinationStream = createWriteStream(jsonSchemaFilePath);
 const jsonSchemaPromise = getSurveyResponseSchema(
   process.env.QUALTRICS_API_TOKEN,
   process.env.QUALTRICS_DATA_CENTER,
