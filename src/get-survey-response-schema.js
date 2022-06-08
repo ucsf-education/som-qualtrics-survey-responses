@@ -1,5 +1,4 @@
-'use strict';
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 async function loadData(token, dataCenter, surveyId) {
   const url = `https://${dataCenter}.qualtrics.com/API/v3/surveys/${surveyId}/response-schema`;
@@ -23,9 +22,7 @@ async function writeFile(data, destinationStream) {
   });
 }
 
-async function getSurveyResponseSchema(token, dataCenter, surveyId, destinationStream) {
+export async function getSurveyResponseSchema(token, dataCenter, surveyId, destinationStream) {
   const data = await loadData(token, dataCenter, surveyId);
   return await writeFile(data, destinationStream);
 }
-
-exports.getSurveyResponseSchema = getSurveyResponseSchema;

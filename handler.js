@@ -1,9 +1,9 @@
-'use strict';
-const fs = require('fs');
-const { getSurveyResponses } = require('./src/get-survey-responses');
-const { getSurveyResponseSchema } = require('./src/get-survey-response-schema');
-const { getSurveyDetails } = require('./src/get-survey-details');
-const AWS = require('aws-sdk');
+import { createReadStream, createWriteStream } from 'node:fs';
+import AWS from 'aws-sdk';
+import { getSurveyDetails } from './src/get-survey-details.js';
+import { getSurveyResponseSchema } from './src/get-survey-response-schema.js';
+import { getSurveyResponses } from './src/get-survey-responses.js';
+
 const s3 = new AWS.S3();
 
 module.exports.storeSurveys = async event => {
@@ -35,7 +35,7 @@ const storeSurvey = async (surveyId) => {
 const storeCSVSurvey = async (surveyId) => {
   console.log(`getting csv response data for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}.csv`;
-  const destinationStream = fs.createWriteStream(fileName);
+  const destinationStream = createWriteStream(fileName);
   await getSurveyResponses(
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
@@ -48,7 +48,7 @@ const storeCSVSurvey = async (surveyId) => {
   const params = {
     Bucket: process.env.BUCKET,
     Key: `${surveyId}.csv`,
-    Body: fs.createReadStream(fileName)
+    Body: createReadStream(fileName)
   };
   await s3.upload(params).promise();
   console.log('done!');
@@ -57,7 +57,7 @@ const storeCSVSurvey = async (surveyId) => {
 const storeSurveyResponses = async (surveyId) => {
   console.log(`getting response data for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}-responses.json`;
-  const destinationStream = fs.createWriteStream(fileName);
+  const destinationStream = createWriteStream(fileName);
   await getSurveyResponses(
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
@@ -70,7 +70,7 @@ const storeSurveyResponses = async (surveyId) => {
   const params = {
     Bucket: process.env.BUCKET,
     Key: `${surveyId}-responses.json`,
-    Body: fs.createReadStream(fileName)
+    Body: createReadStream(fileName)
   };
   await s3.upload(params).promise();
   console.log('done!');
@@ -79,7 +79,7 @@ const storeSurveyResponses = async (surveyId) => {
 const storeSurveyResponseSchema = async (surveyId) => {
   console.log(`getting schema for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}-schema.json`;
-  const destinationStream = fs.createWriteStream(fileName);
+  const destinationStream = createWriteStream(fileName);
   await getSurveyResponseSchema(
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
@@ -91,7 +91,7 @@ const storeSurveyResponseSchema = async (surveyId) => {
   const params = {
     Bucket: process.env.BUCKET,
     Key: `${surveyId}-schema.json`,
-    Body: fs.createReadStream(fileName)
+    Body: createReadStream(fileName)
   };
   await s3.upload(params).promise();
   console.log('done!');
@@ -100,7 +100,7 @@ const storeSurveyResponseSchema = async (surveyId) => {
 const storeSurveyDetails = async (surveyId) => {
   console.log(`getting details for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}-survey.json`;
-  const destinationStream = fs.createWriteStream(fileName);
+  const destinationStream = createWriteStream(fileName);
   await getSurveyDetails(
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
@@ -112,7 +112,7 @@ const storeSurveyDetails = async (surveyId) => {
   const params = {
     Bucket: process.env.BUCKET,
     Key: `${surveyId}-survey.json`,
-    Body: fs.createReadStream(fileName)
+    Body: createReadStream(fileName)
   };
   await s3.upload(params).promise();
   console.log('done!');

@@ -1,9 +1,5 @@
-'use strict';
-
-function sleep(ms) {
+export function sleep(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 }
-
-exports.sleep = sleep;
