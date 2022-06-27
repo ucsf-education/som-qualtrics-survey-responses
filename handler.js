@@ -6,7 +6,7 @@ import { getSurveyResponses } from './src/get-survey-responses.js';
 
 const s3 = new AWS.S3();
 
-module.exports.storeSurveys = async event => {
+export async function storeSurveys(event) {
   const ids = process.env.SURVEY_IDS.split(',').filter(id => {
     //filter out empty "\n" string values
     return Boolean(id) && typeof id === 'string' && id.length > 5;
@@ -15,7 +15,7 @@ module.exports.storeSurveys = async event => {
   const promises = ids.map(id => storeSurvey(id.trim()));
   const results = await Promise.all(promises);
   return { message: results.join(', '), event };
-};
+}
 
 const storeSurvey = async (surveyId) => {
   try {
