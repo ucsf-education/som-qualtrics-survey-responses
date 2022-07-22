@@ -1,6 +1,6 @@
 import { createReadStream, createWriteStream } from 'node:fs';
 import AWS from 'aws-sdk';
-import { Logger } from './src/logger';
+import { Logger } from './src/logger.js';
 import { getSurveyDetails } from './src/get-survey-details.js';
 import { getSurveyResponseSchema } from './src/get-survey-response-schema.js';
 import { getSurveyResponses } from './src/get-survey-responses.js';
@@ -14,9 +14,11 @@ export async function storeSurveys(event) {
   });
   console.log('Processing Survey Ids: ', ids);
   const promises = ids.map(id => storeSurvey(id.trim()));
-  const results = await Promise.all(promises);
-  return { message: results.join(', '), event };
-};
+  const loggers = await Promise.all(promises);
+  const output = loggers.map(logger => logger?.getEvents());
+  console.log(output);
+  return { message: output, event };
+}
 
 const storeSurvey = async (surveyId) => {
   const logger = new Logger();

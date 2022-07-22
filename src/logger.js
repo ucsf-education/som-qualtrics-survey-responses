@@ -1,4 +1,4 @@
-exports.Logger = class Logger {
+export class Logger {
   events = [];
   addEvent(str) {
     this.events.push(str);
@@ -6,4 +6,4 @@ exports.Logger = class Logger {
   getEvents() {
     return this.events;
   }
-};
+}
