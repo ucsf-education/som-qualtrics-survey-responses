@@ -32,13 +32,18 @@ provider:
 custom:
   outputBucket: 'som-qualtrics-survey-responses-${opt:stage, self:provider.stage}'
   qualtricsApiToken: ${ssm:/aws/reference/secretsmanager/som/qualtrics/api_key}
+  isScheduleEnabled:
+    prod: true
+    dev: false
 
 functions:
   storeSurveys:
     timeout: 600
     handler: handler.storeSurveys
     events:
-      - schedule: rate(30 minutes)
+      - schedule:
+          rate: rate(30 minutes)
+          enabled: ${self:custom.isScheduleEnabled.${self:provider.stage}}
     environment:
       SURVEY_IDS: > 
         SV_exInb81a5EtSLDT,
