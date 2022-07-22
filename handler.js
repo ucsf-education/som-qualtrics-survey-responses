@@ -87,12 +87,11 @@ const storeSurveyResponses = async (surveyId, logger) => {
 const storeSurveyResponseSchema = async (surveyId, logger) => {
   logger.addEvent(`getting schema for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}-schema.json`;
-  const destinationStream = createWriteStream(fileName);
   await getSurveyResponseSchema(
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
     surveyId,
-    destinationStream,
+    fileName,
     logger,
   );
 
@@ -109,12 +108,11 @@ const storeSurveyResponseSchema = async (surveyId, logger) => {
 const storeSurveyDetails = async (surveyId, logger) => {
   logger.addEvent(`getting details for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}-survey.json`;
-  const destinationStream = createWriteStream(fileName);
   await getSurveyDetails(
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
     surveyId,
-    destinationStream,
+    fileName,
     logger,
   );
 
