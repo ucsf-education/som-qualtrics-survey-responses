@@ -1,5 +1,6 @@
 import { createReadStream, createWriteStream } from 'node:fs';
 import AWS from 'aws-sdk';
+import { Logger } from './src/logger.js';
 import { getSurveyDetails } from './src/get-survey-details.js';
 import { getSurveyResponseSchema } from './src/get-survey-response-schema.js';
 import { getSurveyResponses } from './src/get-survey-responses.js';
@@ -13,27 +14,32 @@ export async function storeSurveys(event) {
   });
   console.log('Processing Survey Ids: ', ids);
   const promises = ids.map(id => storeSurvey(id.trim()));
-  const results = await Promise.all(promises);
-  return { message: results.join(', '), event };
+  const loggers = await Promise.all(promises);
+  const output = loggers.map(logger => logger?.getEvents());
+  console.log(output);
+  return { message: output, event };
 }
 
 const storeSurvey = async (surveyId) => {
+  const logger = new Logger();
   try {
     await Promise.all([
-      storeSurveyResponses(surveyId),
-      storeSurveyResponseSchema(surveyId),
-      storeSurveyDetails(surveyId),
-      storeCSVSurvey(surveyId),
+      storeSurveyResponses(surveyId, logger),
+      storeSurveyResponseSchema(surveyId, logger),
+      storeSurveyDetails(surveyId, logger),
+      storeCSVSurvey(surveyId, logger),
     ]);
-    return `Stored ${surveyId}`;
+    logger.addEvent(`Stored ${surveyId}`);
+    return logger;
   } catch (e) {
     console.log(`Error fetching: ${surveyId}`);
     console.log(e);
+    console.log(logger.getEvents());
   }
 };
 
-const storeCSVSurvey = async (surveyId) => {
-  console.log(`getting csv response data for survey: ${surveyId}`);
+const storeCSVSurvey = async (surveyId, logger) => {
+  logger.addEvent(`getting csv response data for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}.csv`;
   const destinationStream = createWriteStream(fileName);
   await getSurveyResponses(
@@ -41,21 +47,22 @@ const storeCSVSurvey = async (surveyId) => {
     process.env.QUALTRICS_DATA_CENTER,
     surveyId,
     destinationStream,
-    'csv'
+    'csv',
+    logger,
   );
 
-  console.log(`csv response data extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}.csv`);
+  logger.addEvent(`csv response data extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}.csv`);
   const params = {
     Bucket: process.env.BUCKET,
     Key: `${surveyId}.csv`,
     Body: createReadStream(fileName)
   };
   await s3.upload(params).promise();
-  console.log('done!');
+  logger.addEvent('done!');
 };
 
-const storeSurveyResponses = async (surveyId) => {
-  console.log(`getting response data for survey: ${surveyId}`);
+const storeSurveyResponses = async (surveyId, logger) => {
+  logger.addEvent(`getting response data for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}-responses.json`;
   const destinationStream = createWriteStream(fileName);
   await getSurveyResponses(
@@ -63,57 +70,58 @@ const storeSurveyResponses = async (surveyId) => {
     process.env.QUALTRICS_DATA_CENTER,
     surveyId,
     destinationStream,
-    'json'
+    'json',
+    logger,
   );
 
-  console.log(`response data extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}-responses.json`);
+  logger.addEvent(`response data extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}-responses.json`);
   const params = {
     Bucket: process.env.BUCKET,
     Key: `${surveyId}-responses.json`,
     Body: createReadStream(fileName)
   };
   await s3.upload(params).promise();
-  console.log('done!');
+  logger.addEvent('done!');
 };
 
-const storeSurveyResponseSchema = async (surveyId) => {
-  console.log(`getting schema for survey: ${surveyId}`);
+const storeSurveyResponseSchema = async (surveyId, logger) => {
+  logger.addEvent(`getting schema for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}-schema.json`;
-  const destinationStream = createWriteStream(fileName);
   await getSurveyResponseSchema(
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
     surveyId,
-    destinationStream,
+    fileName,
+    logger,
   );
 
-  console.log(`schema extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}-schema.json`);
+  logger.addEvent(`schema extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}-schema.json`);
   const params = {
     Bucket: process.env.BUCKET,
     Key: `${surveyId}-schema.json`,
     Body: createReadStream(fileName)
   };
   await s3.upload(params).promise();
-  console.log('done!');
+  logger.addEvent('done!');
 };
 
-const storeSurveyDetails = async (surveyId) => {
-  console.log(`getting details for survey: ${surveyId}`);
+const storeSurveyDetails = async (surveyId, logger) => {
+  logger.addEvent(`getting details for survey: ${surveyId}`);
   const fileName = `/tmp/${surveyId}-survey.json`;
-  const destinationStream = createWriteStream(fileName);
   await getSurveyDetails(
     process.env.QUALTRICS_API_TOKEN,
     process.env.QUALTRICS_DATA_CENTER,
     surveyId,
-    destinationStream,
+    fileName,
+    logger,
   );
 
-  console.log(`details extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}-survey.json`);
+  logger.addEvent(`details extracted, writing to S3 bucket ${process.env.BUCKET} ${surveyId}-survey.json`);
   const params = {
     Bucket: process.env.BUCKET,
     Key: `${surveyId}-survey.json`,
     Body: createReadStream(fileName)
   };
   await s3.upload(params).promise();
-  console.log('done!');
+  logger.addEvent('done!');
 };
