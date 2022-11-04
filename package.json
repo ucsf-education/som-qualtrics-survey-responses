@@ -12,7 +12,7 @@
   "author": "Jon Johnson <jon.johnson@ucsf.edu>",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.1246.0",
+    "aws-sdk": "^2.1247.0",
     "node-fetch": "^3.2.10",
     "yauzl-promise": "^2.1.3"
   },
