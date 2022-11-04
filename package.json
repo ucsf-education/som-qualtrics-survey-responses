@@ -19,7 +19,7 @@
   "devDependencies": {
     "dotenv": "^16.0.3",
     "eslint": "^8.26.0",
-    "serverless": "^3.23.0"
+    "serverless": "^3.24.0"
   },
   "engines": {
     "node": ">= 16"
