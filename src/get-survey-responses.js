@@ -61,6 +61,6 @@ async function writeFile(token, url, destinationStream, logger) {
 
 export async function getSurveyResponses(token, dataCenter, surveyId, destinationStream, format, logger) {
   const progressId = await requestResultsToBeBuilt(token, dataCenter, surveyId, format, logger);
-  const fileUrl = await waitForBuildToComplete(token, dataCenter, progressId, logger);
+  const fileUrl = await waitForBuildToComplete(token, dataCenter, progressId);
   return await writeFile(token, fileUrl, destinationStream, logger);
 }
