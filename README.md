@@ -10,13 +10,13 @@ The procedure for downloading updated surveys is for authorized UCSF School of M
 ## Updating the file index
 Every so often, a new UCSF SOM survey will be created in Qualtrics, and this downloader will need to be made aware of the change by being updated with the ID or IDs of any new surveys added. Any new survey data will NOT be made available to SOM for review until this step is performed for EACH new survey.
 
-The process for updating the downloader with new survey ID's entails updating the [serverless.yml](https://github.com/ucsf-ckm/som-qualtrics-survey-responses/blob/master/serverless.yml) file in this repository, and the easiest way to update it is to do it right here on GitHub, in the user interface. The process for doing so is as-follows:
+The process for updating the downloader with new survey ID's entails updating the [serverless.yml](https://github.com/ucsf-education/som-qualtrics-survey-responses/blob/master/serverless.yml) file in this repository, and the easiest way to update it is to do it right here on GitHub, in the user interface. The process for doing so is as-follows:
 
-1. Make sure you have a Github user account. If you do not already have one, it is free, and you can register for one [here](https://github.com/join?source=prompt-blob-show&source_repo=ucsf-ckm%2Fsom-qualtrics-survey-responses).
+1. Make sure you have a Github user account. If you do not already have one, it is free, and you can register for one [here](https://github.com/join?source=prompt-blob-show&source_repo=ucsf-education%2Fsom-qualtrics-survey-responses).
 
-2. Visit/view the code page for [serverless.yml](https://github.com/ucsf-ckm/som-qualtrics-survey-responses/blob/master/serverless.yml) by going to https://github.com/ucsf-ckm/som-qualtrics-survey-responses/blob/master/serverless.yml.
+2. Visit/view the code page for [serverless.yml](https://github.com/ucsf-education/som-qualtrics-survey-responses/blob/master/serverless.yml) by going to https://github.com/ucsf-education/som-qualtrics-survey-responses/blob/master/serverless.yml.
 
-3. Look at the code for `serverless.yml`, specifically lines [34-82](https://github.com/ucsf-ckm/som-qualtrics-survey-responses/blob/master/serverless.yml#L34-L82), under the `functions:` section of the code, and you will see an entry for each `storeSurveys` like so:
+3. Look at the code for `serverless.yml`, specifically lines [34-82](https://github.com/ucsf-education/som-qualtrics-survey-responses/blob/master/serverless.yml#L34-L82), under the `functions:` section of the code, and you will see an entry for each `storeSurveys` like so:
 
 ```yaml
   functions:
