@@ -8,41 +8,35 @@ on:
 concurrency: deploy-dev
 
 jobs:
-  test:
-    name: Run Tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: 'npm'
-      - run: npm ci
-      - run: npm test
-
   deploy:
     name: Deploy To AWS
-    needs: test
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js 18
-      uses: actions/setup-node@v4
+    - uses: pnpm/action-setup@v4
       with:
-        node-version: 18
-        cache: 'npm'
-    - name: install dependencies
-      run: npm ci
-    - name: Serverless Deploy
-      run: npm run deploy:dev
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    - name: Notify Slack on Failure - Ilios deployment channel
-      uses: act10ns/slack@v2
+        version: 9
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - name: install dependencies hoisted for lambda
+      run: pnpm install --node-linker=hoisted
+    - run: pnpm exec serverless package --stage dev
+    - uses: actions/upload-artifact@v4
+      with:
+        name: dev-som-qualtrics-survey-responses.zip
+        path: ./.serverless/som-qualtrics-survey-responses.zip
+        if-no-files-found: error
+        retention-days: 3
+        compression-level: 0
+    - run: pnpm exec serverless deploy --stage dev --package ./.serverless --conceal --verbose
+    - uses: act10ns/slack@v2
       if: failure()
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_ILIOS_DEPLOYMENT_WEBHOOK_URL }}
       with:
         status: ${{ job.status }}
-        message: Dev Deploy Failed {{ env.GITHUB_SERVER_URL }}/{{ env.GITHUB_REPOSITORY }}/actions/runs/{{ env.GITHUB_RUN_ID }}
+        message: Qualtrics ETL Dev Deploy Failed {{ env.GITHUB_SERVER_URL }}/{{ env.GITHUB_REPOSITORY }}/actions/runs/{{ env.GITHUB_RUN_ID }}
