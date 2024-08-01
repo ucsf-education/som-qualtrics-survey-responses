@@ -1,11 +1,14 @@
 import { createReadStream, createWriteStream } from 'node:fs';
-import AWS from 'aws-sdk';
 import { Logger } from './src/logger.js';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client } from '@aws-sdk/client-s3';
 import { getSurveyDetails } from './src/get-survey-details.js';
 import { getSurveyResponseSchema } from './src/get-survey-response-schema.js';
 import { getSurveyResponses } from './src/get-survey-responses.js';
 
-const s3 = new AWS.S3();
+//create the client outside of the handler:
+//https://github.com/aws/aws-sdk-js-v3?tab=readme-ov-file#best-practices
+const s3Client = new S3Client({});
 
 export async function storeSurveys(event) {
   const ids = process.env.SURVEY_IDS.split(',').filter(id => {
@@ -57,7 +60,8 @@ const storeCSVSurvey = async (surveyId, logger) => {
     Key: `${surveyId}.csv`,
     Body: createReadStream(fileName)
   };
-  await s3.upload(params).promise();
+  const command = new PutObjectCommand(params);
+  await s3Client.send(command);
   logger.addEvent('done!');
 };
 
@@ -80,7 +84,8 @@ const storeSurveyResponses = async (surveyId, logger) => {
     Key: `${surveyId}-responses.json`,
     Body: createReadStream(fileName)
   };
-  await s3.upload(params).promise();
+  const command = new PutObjectCommand(params);
+  await s3Client.send(command);
   logger.addEvent('done!');
 };
 
@@ -101,7 +106,8 @@ const storeSurveyResponseSchema = async (surveyId, logger) => {
     Key: `${surveyId}-schema.json`,
     Body: createReadStream(fileName)
   };
-  await s3.upload(params).promise();
+  const command = new PutObjectCommand(params);
+  await s3Client.send(command);
   logger.addEvent('done!');
 };
 
@@ -122,6 +128,7 @@ const storeSurveyDetails = async (surveyId, logger) => {
     Key: `${surveyId}-survey.json`,
     Body: createReadStream(fileName)
   };
-  await s3.upload(params).promise();
+  const command = new PutObjectCommand(params);
+  await s3Client.send(command);
   logger.addEvent('done!');
 };
