@@ -7,22 +7,32 @@ jobs:
   tag:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
+      - uses: actions/checkout@v4
+        with:
           token: ${{ secrets.ZORGBORT_TOKEN }}
-    - name: Setup Git
-      run: |
-        git config user.name Zorgbort
-        git config user.email info@iliosproject.org
-    - name: Increment Version
-      run: npm version major
-    - name: Push Changes
-      run: git push --follow-tags
-    - name: Notify Slack on Failure - Ilios deployment channel
-      uses: act10ns/slack@v2
-      if: failure()
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_ILIOS_DEPLOYMENT_WEBHOOK_URL }}
-      with:
-        status: ${{ job.status }}
-        message: Version Tagging Failed {{ env.GITHUB_SERVER_URL }}/{{ env.GITHUB_REPOSITORY }}/actions/runs/{{ env.GITHUB_RUN_ID }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Setup Git
+        run: |
+          git config user.name Zorgbort
+          git config user.email info@iliosproject.org
+      - name: Increment Version
+        run: npx versionup --level major
+      - run: |
+          NEW_TAG=`node -p "require('./package.json').version"`
+          echo ${NEW_TAG}
+          echo "new_tag=${NEW_TAG}" >> $GITHUB_ENV
+      - name: Tag Version
+        run: |
+          git commit -a -m "${{env.new_tag}}"
+          git tag v${{env.new_tag}} -m "Tagging the v${{env.new_tag}} major release"
+      - name: Push Changes
+        run: git push --follow-tags
+      - uses: act10ns/slack@v2
+        if: failure()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_ILIOS_DEPLOYMENT_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          message: Qualtrics ETL Version Tagging Failed {{ env.GITHUB_SERVER_URL }}/{{ env.GITHUB_REPOSITORY }}/actions/runs/{{ env.GITHUB_RUN_ID }}

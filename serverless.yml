@@ -2,7 +2,7 @@ service: som-qualtrics-survey-responses
 variablesResolutionMode: 20210326
 provider:
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs20.x
   stage: dev
   region: us-west-2
   memorySize: 256
@@ -180,12 +180,6 @@ functions:
         SV_5q0eQNa8IDTaBDw,
         SV_0oIPwBc5YXCzIGy,
         SV_0f94AVpaDvMS9p4
-
-
-
-
-
-
 
 
 # you can add CloudFormation resource templates here

@@ -12,15 +12,16 @@ jobs:
   test:
     name: Lint Only (No Tests)
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js 18
-      uses: actions/setup-node@v4
+    - uses: pnpm/action-setup@v4
       with:
-        node-version: 18
-        cache: 'npm'
-    - name: install dependencies
-      run: npm ci
+        version: 9
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: pnpm
+    - name: Install Dependencies
+      run: pnpm install
     - name: test
-      run: npm test
+      run: pnpm run test
