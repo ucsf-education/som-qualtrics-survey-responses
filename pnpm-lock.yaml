@@ -25,8 +25,8 @@ importers:
         specifier: ^15.9.0
         version: 15.9.0
       serverless:
-        specifier: ^4.1.21
-        version: 4.1.21
+        specifier: ^4.1.22
+        version: 4.1.22
 
 packages:
 
@@ -999,8 +999,11 @@ packages:
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
-  serverless@4.1.21:
-    resolution: {integrity: sha512-orKIKaAvRf1BlCeF4/wLnF87cIIwa50ytGPXva12Znc8CEuny3sqg4f8cvejtkvny7pXHshiL8AV02au0BSfZw==}
+  sax@1.4.1:
+    resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
+
+  serverless@4.1.22:
+    resolution: {integrity: sha512-MNEZqktEIib/JB+JRc504EaijEr1CgG5jlbUfUV7u2BXpneJinhTgVQH56TVZLSPWEEMIIdA9Eu0Wdi3jUfpbw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -1088,6 +1091,14 @@ packages:
   wrap-ansi@8.1.0:
     resolution: {integrity: sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==}
     engines: {node: '>=12'}
+
+  xml2js@0.6.2:
+    resolution: {integrity: sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==}
+    engines: {node: '>=4.0.0'}
+
+  xmlbuilder@11.0.1:
+    resolution: {integrity: sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==}
+    engines: {node: '>=4.0'}
 
   yauzl-promise@4.0.0:
     resolution: {integrity: sha512-/HCXpyHXJQQHvFq9noqrjfa/WpQC2XYs3vI7tBiAi4QiIU1knvYhZGaO1QPjwIVMdqflxbmwgMXtYeaRiAE0CA==}
@@ -2498,11 +2509,14 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
-  serverless@4.1.21:
+  sax@1.4.1: {}
+
+  serverless@4.1.22:
     dependencies:
       axios: 1.7.3
       axios-proxy-builder: 0.1.2
       rimraf: 5.0.10
+      xml2js: 0.6.2
     transitivePeerDependencies:
       - debug
 
@@ -2579,6 +2593,13 @@ snapshots:
       ansi-styles: 6.2.1
       string-width: 5.1.2
       strip-ansi: 7.1.0
+
+  xml2js@0.6.2:
+    dependencies:
+      sax: 1.4.1
+      xmlbuilder: 11.0.1
+
+  xmlbuilder@11.0.1: {}
 
   yauzl-promise@4.0.0:
     dependencies:
