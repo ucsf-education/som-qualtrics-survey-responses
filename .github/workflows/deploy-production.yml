@@ -25,7 +25,7 @@ jobs:
         node-version: 20
     - name: install dependencies hoisted for lambda
       run: pnpm install --node-linker=hoisted
-    - run: pnpm exec serverless package --stage dev
+    - run: pnpm exec serverless package --stage prod
     - uses: actions/upload-artifact@v4
       with:
         name: prod-som-qualtrics-survey-responses.zip
