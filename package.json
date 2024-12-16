@@ -16,7 +16,7 @@
     "yauzl-promise": "^4.0.0"
   },
   "devDependencies": {
-    "@aws-sdk/client-s3": "^3.709.0",
+    "@aws-sdk/client-s3": "^3.712.0",
     "eslint": "^9.16.0",
     "globals": "^15.13.0",
     "serverless": "^4.4.16"
