@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.734.0",
-    "eslint": "^9.18.0",
+    "eslint": "^9.19.0",
     "globals": "^15.14.0",
     "serverless": "^4.5.0"
   },
