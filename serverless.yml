@@ -4,7 +4,7 @@ provider:
   runtime: nodejs20.x
   stage: dev
   region: us-west-2
-  memorySize: 256
+  memorySize: 512
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -19,7 +19,7 @@ provider:
         Fn::Join:
           - ""
           - - "arn:aws:s3:::"
-            - "Ref" : SOMQualtricsSurveyResponseBucket
+            - "Ref": SOMQualtricsSurveyResponseBucket
             - "/*"
   environment:
     BUCKET: ${self:custom.outputBucket}
@@ -27,7 +27,7 @@ provider:
     QUALTRICS_DATA_CENTER: "ucsf.co1"
 
 custom:
-  outputBucket: 'som-qualtrics-survey-responses-${opt:stage, self:provider.stage}'
+  outputBucket: "som-qualtrics-survey-responses-${opt:stage, self:provider.stage}"
   qualtricsApiToken: ${ssm:/aws/reference/secretsmanager/som/qualtrics/api_key}
   isScheduleEnabled:
     prod: true
@@ -35,14 +35,14 @@ custom:
 
 functions:
   storeSurveys:
-    timeout: 600
+    timeout: 1200
     handler: handler.storeSurveys
     events:
       - schedule:
           rate: rate(30 minutes)
           enabled: ${self:custom.isScheduleEnabled.${self:provider.stage}}
     environment:
-      SURVEY_IDS: > 
+      SURVEY_IDS: >
         SV_bK7vU2Zk1WzBOBf,
         SV_d6UsHGihbYWM4sd,
         SV_0SQhsikeG2St445,
@@ -131,21 +131,19 @@ functions:
         SV_bd78shga9VIE2IC,
         SV_cBbADjvXvJZ0jfo
 
-
-
 # you can add CloudFormation resource templates here
 resources:
- Resources:
-   SOMQualtricsSurveyResponseBucket:
-     Type: AWS::S3::Bucket
-     Properties:
-       BucketName: ${self:custom.outputBucket}
-       PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
-       BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
+  Resources:
+    SOMQualtricsSurveyResponseBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.outputBucket}
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+        BucketEncryption:
+          ServerSideEncryptionConfiguration:
+            - ServerSideEncryptionByDefault:
+                SSEAlgorithm: AES256
