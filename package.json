@@ -1,6 +1,6 @@
 {
   "name": "som-qualtrics-survey-responses",
-  "version": "43.0.0",
+  "version": "44.0.0",
   "description": "Connect to the qualtrics API and get survey responses",
   "exports": "./index.js",
   "type": "module",
