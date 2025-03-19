@@ -16,8 +16,11 @@ export async function storeSurveys(event) {
     return Boolean(id) && typeof id === 'string' && id.length > 5;
   });
   console.log('Processing Survey Ids: ', ids);
-  const promises = ids.map(id => storeSurvey(id.trim()));
-  const loggers = await Promise.all(promises);
+
+  const loggers = [];
+  for (const id of ids) {
+    loggers.push(await storeSurvey(id.trim()));
+  }
   const output = loggers.map(logger => logger?.getEvents());
   console.log(output);
   return { message: output, event };
