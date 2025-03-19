@@ -29,12 +29,10 @@ export async function storeSurveys(event) {
 const storeSurvey = async (surveyId) => {
   const logger = new Logger();
   try {
-    await Promise.all([
-      storeSurveyResponses(surveyId, logger),
-      storeSurveyResponseSchema(surveyId, logger),
-      storeSurveyDetails(surveyId, logger),
-      storeCSVSurvey(surveyId, logger),
-    ]);
+    await storeSurveyResponses(surveyId, logger);
+    await storeSurveyResponseSchema(surveyId, logger);
+    await storeSurveyDetails(surveyId, logger);
+    await storeCSVSurvey(surveyId, logger);
     logger.addEvent(`Stored ${surveyId}`);
     return logger;
   } catch (e) {
