@@ -25,8 +25,8 @@ importers:
         specifier: ^16.2.0
         version: 16.2.0
       serverless:
-        specifier: ^4.17.0
-        version: 4.17.0
+        specifier: ^4.17.1
+        version: 4.17.1
 
 packages:
 
@@ -613,8 +613,8 @@ packages:
   axios-proxy-builder@0.1.2:
     resolution: {integrity: sha512-6uBVsBZzkB3tCC8iyx59mCjQckhB8+GQrI9Cop8eC7ybIsvs/KtnNgEBfRMSEa7GqK2VBGUzgjNYMdPIfotyPA==}
 
-  axios@1.9.0:
-    resolution: {integrity: sha512-re4CqKTJaURpzbLHtIi6XpDv20/CnpXOtjRY5/CU32L8gU8ek9UIivcfvSWvmKEngmVbrUtPpdDwWDWL7DNHvg==}
+  axios@1.10.0:
+    resolution: {integrity: sha512-/1xYAC4MP/HEG+3duIhFr4ZQXR4sQXOIe+o6sdqzeykGLx6Upp/1p8MHqhINOvGeP7xyNHe7tsiJByc4SSVUxw==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -1049,8 +1049,8 @@ packages:
   sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
 
-  serverless@4.17.0:
-    resolution: {integrity: sha512-hoZmipwyN/h7y9HwkWGlJ0YT06RFq7WNOD7fFEiPfnSnnUMVTzeNHq2BRrUlpHhf5s9srCHDc2wx5I06acfq1Q==}
+  serverless@4.17.1:
+    resolution: {integrity: sha512-NzNzDtlAUt0nBf7keDYa/pC7qOO172oxbTqHIlylx9vBlrBU4lZQ772Bl+sdjvRjEfBf84K7GE4RXyFS4cXJxQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -2151,7 +2151,7 @@ snapshots:
     dependencies:
       tunnel: 0.0.6
 
-  axios@1.9.0:
+  axios@1.10.0:
     dependencies:
       follow-redirects: 1.15.9
       form-data: 4.0.3
@@ -2587,9 +2587,9 @@ snapshots:
 
   sax@1.4.1: {}
 
-  serverless@4.17.0:
+  serverless@4.17.1:
     dependencies:
-      axios: 1.9.0
+      axios: 1.10.0
       axios-proxy-builder: 0.1.2
       rimraf: 5.0.10
       xml2js: 0.6.2
