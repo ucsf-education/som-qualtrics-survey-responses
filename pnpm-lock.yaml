@@ -25,8 +25,8 @@ importers:
         specifier: ^16.5.0
         version: 16.5.0
       serverless:
-        specifier: ^4.22.0
-        version: 4.22.0
+        specifier: ^4.23.0
+        version: 4.23.0
 
 packages:
 
@@ -613,8 +613,8 @@ packages:
   axios-proxy-builder@0.1.2:
     resolution: {integrity: sha512-6uBVsBZzkB3tCC8iyx59mCjQckhB8+GQrI9Cop8eC7ybIsvs/KtnNgEBfRMSEa7GqK2VBGUzgjNYMdPIfotyPA==}
 
-  axios@1.12.2:
-    resolution: {integrity: sha512-vMJzPewAlRyOgxV2dU0Cuz2O8zzzx9VYtbJOaBgXFeLc4IV/Eg50n4LowmehOOR61S8ZMpc2K5Sa7g6A4jfkUw==}
+  axios@1.13.2:
+    resolution: {integrity: sha512-VPk9ebNqPcy5lRGuSlKx752IlDatOjT9paPlm8A7yOuW2Fbvp4X3JznJtT4f0GzGLLiWE9W8onz51SqLYwzGaA==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -1046,11 +1046,11 @@ packages:
     resolution: {integrity: sha512-l0OE8wL34P4nJH/H2ffoaniAokM2qSmrtXHmlpvYr5AVVX8msAyW0l8NVJFDxlSK4u3Uh/f41cQheDVdnYijwQ==}
     hasBin: true
 
-  sax@1.4.1:
-    resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
+  sax@1.4.3:
+    resolution: {integrity: sha512-yqYn1JhPczigF94DMS+shiDMjDowYO6y9+wB/4WgO0Y19jWYk0lQ4tuG5KI7kj4FTp1wxPj5IFfcrz/s1c3jjQ==}
 
-  serverless@4.22.0:
-    resolution: {integrity: sha512-RvLy6hMOjScnNRfgmaCarxf8PetWGn/dLQx+WFKieenkdHfxZp4Qg0eMh98gL3rX2lrYFUO7N54LWHnoVYEuxA==}
+  serverless@4.23.0:
+    resolution: {integrity: sha512-LFaoLDSlP2cGZeBpsY5z6Pxn93f2M/3I+RKhcTQfXWp4JjQvVHzRBJdZNUiv2L+UCL1U94pQOwH6+bGMh5n/vw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -2152,7 +2152,7 @@ snapshots:
     dependencies:
       tunnel: 0.0.6
 
-  axios@1.12.2:
+  axios@1.13.2:
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.4
@@ -2585,11 +2585,11 @@ snapshots:
     dependencies:
       glob: 10.4.5
 
-  sax@1.4.1: {}
+  sax@1.4.3: {}
 
-  serverless@4.22.0:
+  serverless@4.23.0:
     dependencies:
-      axios: 1.12.2
+      axios: 1.13.2
       axios-proxy-builder: 0.1.2
       rimraf: 5.0.10
       xml2js: 0.6.2
@@ -2668,7 +2668,7 @@ snapshots:
 
   xml2js@0.6.2:
     dependencies:
-      sax: 1.4.1
+      sax: 1.4.3
       xmlbuilder: 11.0.1
 
   xmlbuilder@11.0.1: {}
