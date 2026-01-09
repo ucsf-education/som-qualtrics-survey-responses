@@ -25,8 +25,8 @@ importers:
         specifier: ^16.5.0
         version: 16.5.0
       serverless:
-        specifier: ^4.29.4
-        version: 4.29.4
+        specifier: ^4.30.0
+        version: 4.30.0
 
 packages:
 
@@ -1054,11 +1054,12 @@ packages:
     resolution: {integrity: sha512-l0OE8wL34P4nJH/H2ffoaniAokM2qSmrtXHmlpvYr5AVVX8msAyW0l8NVJFDxlSK4u3Uh/f41cQheDVdnYijwQ==}
     hasBin: true
 
-  sax@1.4.3:
-    resolution: {integrity: sha512-yqYn1JhPczigF94DMS+shiDMjDowYO6y9+wB/4WgO0Y19jWYk0lQ4tuG5KI7kj4FTp1wxPj5IFfcrz/s1c3jjQ==}
+  sax@1.4.4:
+    resolution: {integrity: sha512-1n3r/tGXO6b6VXMdFT54SHzT9ytu9yr7TaELowdYpMqY/Ao7EnlQGmAQ1+RatX7Tkkdm6hONI2owqNx2aZj5Sw==}
+    engines: {node: '>=11.0.0'}
 
-  serverless@4.29.4:
-    resolution: {integrity: sha512-6/DfG+KuumqbRnAidTlOEzcl8l8QuDb/yfXRbNhhabjZW96IBkwUuorMTyGj/dSL1cFU52KJtmBO/uWgpkZPfA==}
+  serverless@4.30.0:
+    resolution: {integrity: sha512-ao6aHKlEwk81KtxdXAtW5Cnw3MPyWF0EnDCgqP/EReFa/a1tat98yhGm2qJ6joaY+UCpIVxWfmkOvjohztClSw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -2611,9 +2612,9 @@ snapshots:
     dependencies:
       glob: 10.5.0
 
-  sax@1.4.3: {}
+  sax@1.4.4: {}
 
-  serverless@4.29.4:
+  serverless@4.30.0:
     dependencies:
       axios: 1.13.2
       axios-proxy-builder: 0.1.2
@@ -2694,7 +2695,7 @@ snapshots:
 
   xml2js@0.6.2:
     dependencies:
-      sax: 1.4.3
+      sax: 1.4.4
       xmlbuilder: 11.0.1
 
   xmlbuilder@11.0.1: {}
