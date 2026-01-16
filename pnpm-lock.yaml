@@ -25,8 +25,8 @@ importers:
         specifier: ^16.5.0
         version: 16.5.0
       serverless:
-        specifier: ^4.30.0
-        version: 4.30.0
+        specifier: ^4.31.0
+        version: 4.31.0
 
 packages:
 
@@ -1058,8 +1058,8 @@ packages:
     resolution: {integrity: sha512-1n3r/tGXO6b6VXMdFT54SHzT9ytu9yr7TaELowdYpMqY/Ao7EnlQGmAQ1+RatX7Tkkdm6hONI2owqNx2aZj5Sw==}
     engines: {node: '>=11.0.0'}
 
-  serverless@4.30.0:
-    resolution: {integrity: sha512-ao6aHKlEwk81KtxdXAtW5Cnw3MPyWF0EnDCgqP/EReFa/a1tat98yhGm2qJ6joaY+UCpIVxWfmkOvjohztClSw==}
+  serverless@4.31.0:
+    resolution: {integrity: sha512-sk9BfgU3+SvImYv7kOYNkFD/Lsds5nWvAEcpHpaBG9PA7CJ9NTat/aCYe/p1AF5qiMZEbrKpsolYt7Fo1Pnr1g==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -2614,7 +2614,7 @@ snapshots:
 
   sax@1.4.4: {}
 
-  serverless@4.30.0:
+  serverless@4.31.0:
     dependencies:
       axios: 1.13.2
       axios-proxy-builder: 0.1.2
