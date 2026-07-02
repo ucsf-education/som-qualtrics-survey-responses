@@ -43,7 +43,6 @@ functions:
           enabled: ${self:custom.isScheduleEnabled.${self:provider.stage}}
     environment:
       SURVEY_IDS: >
-        SV_bK7vU2Zk1WzBOBf,
         SV_d6UsHGihbYWM4sd,
         SV_0SQhsikeG2St445,
         SV_2498foz7l1fSGlD,
@@ -123,7 +122,8 @@ functions:
         SV_2ggheywexymlNtk,
         SV_e4dZcBxmOgphMuq,
         SV_ePcM2rnRRyPZAhM,
-        SV_5j8wCHahj3kCVbE
+        SV_5j8wCHahj3kCVbE,
+        SV_bK7vU2Zk1WzBOBf
 
 
 
