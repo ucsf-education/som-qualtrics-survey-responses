@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer';
 import { sleep } from './sleep.js';
 import yauzl from 'yauzl-promise';
 
@@ -46,7 +47,7 @@ async function writeFile(token, url, destinationStream, logger) {
       'content-type': 'application/json'
     }
   });
-  const buffer = await response.buffer();
+  const buffer = Buffer.from(await response.arrayBuffer());
   const zipFile = await yauzl.fromBuffer(buffer);
   const entry = await zipFile.readEntry();
   const readStream = await zipFile.openReadStream(entry);
