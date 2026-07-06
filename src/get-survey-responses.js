@@ -20,10 +20,12 @@ async function requestResultsToBeBuilt(token, dataCenter, surveyId, format, logg
   logger.addEvent('fetched');
   const data = await response.json();
 
+  logger.addEvent('data: ' + JSON.stringify(data));
+
   return data.result.id;
 }
 
-async function waitForBuildToComplete(token, dataCenter, progressId) {
+async function waitForBuildToComplete(token, dataCenter, progressId, logger) {
   await sleep(1000); //wait for a second before making the request
   const url = `https://${dataCenter}.qualtrics.com/API/v3/responseexports/${progressId}`;
   const response = await fetch(url, {
@@ -34,9 +36,10 @@ async function waitForBuildToComplete(token, dataCenter, progressId) {
   });
   const data = await response.json();
   if (data.result.percentComplete === 100) {
+    logger.addEvent('Build complete: ' + JSON.stringify(data));
     return data.result.file;
   }
-  return waitForBuildToComplete(token, dataCenter, progressId);
+  return waitForBuildToComplete(token, dataCenter, progressId, logger);
 }
 
 async function writeFile(token, url, destinationStream, logger) {
@@ -61,6 +64,6 @@ async function writeFile(token, url, destinationStream, logger) {
 
 export async function getSurveyResponses(token, dataCenter, surveyId, destinationStream, format, logger) {
   const progressId = await requestResultsToBeBuilt(token, dataCenter, surveyId, format, logger);
-  const fileUrl = await waitForBuildToComplete(token, dataCenter, progressId);
+  const fileUrl = await waitForBuildToComplete(token, dataCenter, progressId, logger);
   return await writeFile(token, fileUrl, destinationStream, logger);
 }
