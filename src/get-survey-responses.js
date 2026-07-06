@@ -47,7 +47,7 @@ async function writeFile(token, url, destinationStream, logger) {
       'content-type': 'application/json'
     }
   });
-  const buffer = await response.buffer();
+  const buffer = await response.arrayBuffer();
   const zipFile = await yauzl.fromBuffer(buffer);
   const entry = await zipFile.readEntry();
   const readStream = await zipFile.openReadStream(entry);
