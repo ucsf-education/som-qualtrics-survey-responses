@@ -35,7 +35,11 @@ async function waitForBuildToComplete(token, dataCenter, progressId, logger) {
     }
   });
   const data = await response.json();
-  if (data.result.percentComplete === 100) {
+  if (
+    data.result.percentComplete === 100 &&
+    data.result.status === 'complete' &&
+    data.result.file
+  ) {
     logger.addEvent('Build complete: ' + JSON.stringify(data));
     return data.result.file;
   }
