@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { writeFileSync } from 'node:fs';
 
 async function loadData(token, dataCenter, surveyId, logger) {
