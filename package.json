@@ -19,7 +19,7 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.6.0",
     "globals": "^17.7.0",
-    "serverless": "^4.38.1"
+    "serverless": "^4.39.0"
   },
   "engines": {
     "node": ">= 22"
