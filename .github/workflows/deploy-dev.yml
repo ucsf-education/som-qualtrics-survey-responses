@@ -20,7 +20,7 @@ jobs:
     - uses: pnpm/action-setup@v6
     - uses: actions/setup-node@v6
       with:
-        node-version: 22
+        node-version: 24
     - name: install dependencies hoisted for lambda
       run: pnpm install --node-linker=hoisted
     - run: pnpm exec serverless package --stage dev
