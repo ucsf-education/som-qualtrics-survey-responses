@@ -22,7 +22,7 @@
     "serverless": "^4.39.0"
   },
   "engines": {
-    "node": ">= 22"
+    "node": ">= 24"
   },
   "packageManager": "pnpm@11.9.0"
 }
