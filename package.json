@@ -18,7 +18,7 @@
     "@aws-sdk/client-s3": "^3.1095.0",
     "@eslint/js": "^10.0.1",
     "eslint": "^10.8.0",
-    "globals": "^17.7.0",
+    "globals": "^17.8.0",
     "serverless": "^4.40.0"
   },
   "engines": {
