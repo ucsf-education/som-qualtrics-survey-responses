@@ -25,8 +25,8 @@ importers:
         specifier: ^17.11.0
         version: 17.11.0
       serverless:
-        specifier: ^4.41.0
-        version: 4.41.0
+        specifier: ^4.41.1
+        version: 4.41.1
 
 packages:
 
@@ -530,8 +530,8 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
-  serverless@4.41.0:
-    resolution: {integrity: sha512-H/yAldLpPggt3EqonzAsXAqJF0+ILcynlaS/G7aJRKvPXNY6LzIXPvFxTo32s3GJVQgahzRiUZvGp0ZhkiIF2w==}
+  serverless@4.41.1:
+    resolution: {integrity: sha512-vjnXUv8RDgzpaVZnrNRIBui9C2injCn6xWt5toUHNvLPPmvy5ECZuS38AENbBTw+2a8WTfmmWz7ob24vi7TJrA==}
     engines: {node: '>=18.17.0'}
     hasBin: true
 
@@ -1147,7 +1147,7 @@ snapshots:
 
   punycode@2.3.1: {}
 
-  serverless@4.41.0:
+  serverless@4.41.1:
     dependencies:
       undici: 6.28.0
 
