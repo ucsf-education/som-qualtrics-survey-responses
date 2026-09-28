@@ -183,8 +183,8 @@ importers:
         specifier: ^17.12.0
         version: 17.12.0
       serverless:
-        specifier: ^4.42.0
-        version: 4.42.0
+        specifier: ^4.43.0
+        version: 4.43.0
 
 packages:
 
@@ -715,8 +715,8 @@ packages:
     resolution: {integrity: sha512-+Owyggi9IxT1ePKGafcI87ubSmxol6smwJ+RAHDQlx9+9cPwFWDiKFFCPuWhr9ignlGpZ9vDQLw67N4dcTVFEA==}
     engines: {node: '>=20'}
 
-  serverless@4.42.0:
-    resolution: {integrity: sha512-auc1KKlWN1VEkA6bljjWIp3NFISnTRnhbRr69P/Z0lF1WJxxHrsUZfeWk9tPxeOWvfjCTjDZU7Nw33dtYw8MJw==}
+  serverless@4.43.0:
+    resolution: {integrity: sha512-ukk3LARQ89Cn2phMyIrwabfy3rx3IoENWKvDY3Cyj4tGJOMv9XAkxgnx8n71jDaG+ijOxBXyPBL72jTkPPju0w==}
     engines: {node: '>=18.17.0'}
     hasBin: true
 
@@ -1371,7 +1371,7 @@ snapshots:
     dependencies:
       hookified: 2.2.0
 
-  serverless@4.42.0:
+  serverless@4.43.0:
     dependencies:
       undici: 6.28.1
 
