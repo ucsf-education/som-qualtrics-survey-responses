@@ -183,8 +183,8 @@ importers:
         specifier: ^17.13.0
         version: 17.13.0
       serverless:
-        specifier: ^4.43.0
-        version: 4.43.0
+        specifier: ^4.44.0
+        version: 4.44.0
 
 packages:
 
@@ -715,8 +715,8 @@ packages:
     resolution: {integrity: sha512-+Owyggi9IxT1ePKGafcI87ubSmxol6smwJ+RAHDQlx9+9cPwFWDiKFFCPuWhr9ignlGpZ9vDQLw67N4dcTVFEA==}
     engines: {node: '>=20'}
 
-  serverless@4.43.0:
-    resolution: {integrity: sha512-ukk3LARQ89Cn2phMyIrwabfy3rx3IoENWKvDY3Cyj4tGJOMv9XAkxgnx8n71jDaG+ijOxBXyPBL72jTkPPju0w==}
+  serverless@4.44.0:
+    resolution: {integrity: sha512-yIC37VA9jKBiZgOOYY2Ewqzg5ix8qjlt0Hf7JwJg/nEqXzUWijVnivCKU82K6PFWvqNqFcABGE6Z0oeTl1wJsQ==}
     engines: {node: '>=18.17.0'}
     hasBin: true
 
@@ -739,8 +739,8 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
-  undici@6.28.1:
-    resolution: {integrity: sha512-zWpdTVD54H48CIybL0rWQ3ukpb9d23wM7eH5RtfdmeP70cWHNjtfo7P4vZX+5CoDcO53J4Pu5uXp7lNfjc6DRA==}
+  undici@6.29.0:
+    resolution: {integrity: sha512-R+RODBqp6i2pPflGdq+xIOUkl+RNfGgHwoinecKu/JCuf2uO06cOKoDbI2P7Dn6KcswdKwrczbU6IYJ6K8X+wg==}
     engines: {node: '>=18.17'}
 
   uri-js@4.4.1:
@@ -1371,9 +1371,9 @@ snapshots:
     dependencies:
       hookified: 2.2.0
 
-  serverless@4.43.0:
+  serverless@4.44.0:
     dependencies:
-      undici: 6.28.1
+      undici: 6.29.0
 
   shebang-command@2.0.0:
     dependencies:
@@ -1389,7 +1389,7 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  undici@6.28.1: {}
+  undici@6.29.0: {}
 
   uri-js@4.4.1:
     dependencies:
